@@ -3,31 +3,6 @@ html {
   scroll-behavior: smooth;
 }
 
-.custom-nav {
-  background-color: transparent;
-  transition: 0.3s ease;
-}
-
-.custom-nav .nav-link {
-  color: white;
-  margin-left: 15px;
-  font-weight: 500;
-}
-
-.custom-nav .navbar-brand {
-  color: white;
-}
-
-.custom-nav.scrolled {
-  background-color: white;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-}
-
-.custom-nav.scrolled .nav-link,
-.custom-nav.scrolled .navbar-brand {
-  color: #333;
-}
-
 /* RESET */
 * {
   margin: 0;
@@ -40,6 +15,98 @@ body {
   line-height: 1.6;
   background-color: #f8f9fa;
   color: #333;
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* BASE NAVBAR */
+.custom-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 9999;
+
+  background: transparent;
+  transition: all 0.3s ease;
+}
+
+/* SCROLLED STATE */
+.custom-nav.scrolled {
+  background: #fff;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+}
+
+.navbar-brand {
+  align-self: flex-start;
+}
+
+/* LAYOUT */
+.nav-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+/* NAV LINKS DESKTOP */
+.nav-links {
+  display: flex;
+  gap: 18px;
+}
+
+.nav-links .nav-link {
+  text-decoration: none;
+  color: #000;
+  font-weight: 500;
+}
+
+.nav-spacer {
+  height: 70px; /* match your navbar height */
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+
+  .nav-links {
+    display: flex;
+    flex-wrap: nowrap;
+
+    overflow-x: auto;
+    overflow-y: hidden;
+
+    width: 100%;
+
+    gap: 18px;
+    padding: 10px 0;
+
+    -webkit-overflow-scrolling: touch;
+
+    /* 🔥 KEY: forces real overflow behavior */
+    white-space: nowrap;
+  }
+
+  .nav-links a {
+    flex: 0 0 auto;
+    white-space: nowrap;
+  }
+
+  /* optional: makes it feel more “carousel-like” */
+  .nav-links {
+    scroll-snap-type: x mandatory;
+  }
+
+  .nav-links a {
+    scroll-snap-align: start;
+  }
+
+  .nav-links::-webkit-scrollbar {
+    display: none;
+  }
+
+  .nav-spacer {
+  height: 90px; /* match your navbar height */
+  }
 }
 
 /* CONTAINER SPACING */
@@ -89,10 +156,6 @@ h2 {
   margin: 15px 0;
   font-size: 1.2rem;
 } */
-body {
-  margin: 0;
-  font-family: 'Poppins', sans-serif;
-}
 
 /* HERO */
 .hero {
@@ -360,25 +423,29 @@ body {
   background: linear-gradient(135deg, #1e3c72, #2a5298);
   color: white;
 }
+
 .card img {
-  border-radius: 10px 10px 0 0;
-  height: 180px;
+  height: 200px;
   object-fit: cover;
 }
 
 .card-body {
-  padding: 15px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 .card {
   border-radius: 20px;
   overflow: hidden;
   transition: 0.3s ease;
-  position: relative;
-  height: auto;
-  padding: 20px;
-  margin-bottom: 10px;
+  padding: 0; /* 🔥 remove padding or it looks weird in carousel */
+  margin-bottom: 0;
+  width: 100%;
+  max-width: 350px;
 }
+
 
 .card:hover {
   transform: translateY(-8px);
@@ -405,9 +472,54 @@ body {
   padding: 30px 0;
 }
 
+.project-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+
 #about {
   min-height: 60v;
   padding: 40px 0;
+}
+
+.card-body .btn {
+  margin-top: auto;
+  align-self: flex-start;
+}
+
+.custom-indicators {
+  position: static;   /* 🔥 removes overlay behavior */
+  margin-top: 15px;
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+}
+
+.custom-indicators button {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+
+  background-color: rgba(255, 255, 255, 0.3); /* soft blue-section-friendly look */
+  border: 1px solid rgba(255, 255, 255, 0.5);
+
+  transition: all 0.3s ease;
+  opacity: 0.6;
+}
+
+.custom-indicators .active {
+  background-color: #ffffff;
+  opacity: 1;
+  transform: scale(1.2);
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
+}
+
+@media (max-width: 768px) {
+  .project-card {
+    max-width: 320px;
+  }
 }
 
 /* ================= BLOG ================= */
