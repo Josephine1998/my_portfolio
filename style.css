@@ -579,6 +579,10 @@ h2 {
   width: 100%;
 }
 
+.blog-buttons {
+  margin-top: 10px;
+}
+
 @media (max-width: 768px) {
   .blog {
     padding: 60px 15px;
