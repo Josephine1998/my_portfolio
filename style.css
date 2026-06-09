@@ -285,6 +285,7 @@ h2 {
 .about-content p {
   line-height: 1.6;
   margin-bottom: 20px;
+  text-align: left;
 }
 
 .about-buttons {
